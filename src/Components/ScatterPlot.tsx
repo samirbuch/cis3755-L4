@@ -11,9 +11,10 @@ import {
   useEffect,
   useRef
 } from "react"
+import { Car } from "../types/Car";
 
 interface ScatterPlotProps {
-  data: any;
+  data: Car[];
   width: number;
   height: number;
 }
@@ -35,15 +36,15 @@ export default function ScatterPlot(props: ScatterPlotProps) {
       const chart = svg.append("g")
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-      console.log(max(props.data, (d) => { return +d.hwy }))
-      console.log(max(props.data, (d) => { return +d.cty }))
+      console.log(max(props.data, (d: Car) => { return +d.hwy }))
+      console.log(max(props.data, (d: Car) => { return +d.cty }))
 
 
       var x = scaleLinear()
-        .domain([0, max(props.data, (d) => { return +d.hwy })])
+        .domain([0, max(props.data, (d: Car) => { return +d.hwy })])
         .range([0, width]);
       var y = scaleLinear()
-        .domain([0, max(props.data, (d) => { return +d.cty })])
+        .domain([0, max(props.data, (d: Car) => { return +d.cty })])
         .range([height, 0]);
 
       chart.append("g")
@@ -58,8 +59,8 @@ export default function ScatterPlot(props: ScatterPlotProps) {
         .data(props.data)
         .enter()
         .append("circle")
-        .attr("cx", function (d) { return x(+d.hwy); })
-        .attr("cy", function (d) { return y(+d.cty); })
+        .attr("cx", function (d: Car) { return x(+d.hwy); })
+        .attr("cy", function (d: Car) { return y(+d.cty); })
         .attr("r", 4)
         .style("opacity", 0.25)
         .style("fill", "#69b3a2")

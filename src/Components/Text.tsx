@@ -6,8 +6,12 @@ import {
   useEffect,
   useRef
 } from "react"
+import { Car } from "../types/Car";
 
-export default function ScatterPlot(props) {
+interface TextProps {
+  data: Car[];
+}
+export default function ScatterPlot(props: TextProps) {
 
   console.log(props);
 
@@ -30,12 +34,12 @@ export default function ScatterPlot(props) {
           .attr('x', 15)
           .attr('y', (d, i) => i * 25)
           .style('font-size', 24)
-          .text((d) => d.model);
+          .text((d: Car) => d.model);
 
         // Update existing D3 elements
         chart
           .attr('x', (d, i) => i * 40)
-          .text((d) => d);
+          .text((d: string | number | boolean) => d);
 
         // Remove old D3 elements
         chart.exit()
