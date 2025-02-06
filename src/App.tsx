@@ -1,14 +1,14 @@
-import "./App.css";
 import { csv } from "d3"; // import the CSV reader from D3 
-import { useEffect } from "react"; // import the useEffect React Lifecycle Hook
+import { useEffect, useState } from "react"; // import the useEffect React Lifecycle Hook
+import "./App.css";
 import ScatterPlot from "./Components/ScatterPlot"; //import your custom component
-import React from "react";
+import OneDData from "./Components/1D-Data";
 
 function App() {
 
   //register your state variables with React 
-  const [data, setData] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   //loading your data asynchronously 
   useEffect(() => {
@@ -21,7 +21,8 @@ function App() {
 
   //render your custom Component (you could render full pages here that have multiple components)
   return (
-      <ScatterPlot data={data} width={750} height={750} /> 
+      // <ScatterPlot data={data} width={750} height={750} /> 
+      <OneDData height={750} width={750} />
   );
 }
 

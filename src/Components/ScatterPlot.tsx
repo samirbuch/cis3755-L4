@@ -12,11 +12,10 @@ import {
   useRef
 } from "react"
 import { Car } from "../types/Car";
+import { DefaultProps } from "../types/DefaultProps";
 
-interface ScatterPlotProps {
+interface ScatterPlotProps extends DefaultProps {
   data: Car[];
-  width: number;
-  height: number;
 }
 export default function ScatterPlot(props: ScatterPlotProps) {
 
