@@ -17,7 +17,7 @@ export default function OneDData(props: DefaultProps) {
       .join("circle");
 
     g.attr("fill", "steelblue")
-      .attr("r", 10)
+      .attr("r", (d: number) => d) // i see. sets the radius to the value of the element in data
       .attr("cx", (d, i) => i * 50)
       .attr("cy", (d, i) => i * 50)
 
