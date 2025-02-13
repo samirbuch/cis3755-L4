@@ -1,56 +1,43 @@
 import * as d3 from "d3";
 import { useLayoutEffect, useRef } from "react";
 import { DefaultProps } from "../types/DefaultProps";
+import { Car } from "../types/Car";
 
-export default function Activity2(props: DefaultProps) {
+interface Activity2Props extends DefaultProps {
+  data: Car[]
+}
+export default function Activity2(props: Activity2Props) {
 
   const d3Ref = useRef<SVGSVGElement>(null);
 
-  function getData() {
-    let data = [];
-    let itemSize = 0;
-
-    for (let i = 0; i < 10; i++) {
-      itemSize = Math.ceil(Math.random() * 5) * 10;
-      data.push(itemSize);
-    }
-    return data;
-  }
-
-  function update(data: ReturnType<typeof getData>) {
+  function createVis() {
     d3.select(d3Ref.current)
       .selectAll("circle")
-      .data(data)
+      .data(props.data)
       .join(
         function(enter) {
-          return enter.append("circle").style("opacity", 0.25);
+          return enter.append("circle").style("opacity", 0.25)
         },
         function(update) {
-          return update.style("opacity", 1);
+          return update.style("opacity", 1)
         }
       )
-      .attr("cx", (d, i) => i * 100)
+      .attr("cx", (d, i) => i * 10)
       .attr("cy", 50)
-      .attr("r", (d: number) => 0.5 * d)
-      .style("fill", "orange");
-  }
-
-  function updateAll() {
-    const newData = getData();
-    update(newData);
+      .attr("r", (d: Car) => d.hwy * 0.5)
+      .style("fill", "blue")
   }
 
   useLayoutEffect(() => {
-    // Init data
-    updateAll();
+    createVis();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.data]);
 
   return (
     <div style={{ height: props.height, width: props.width }}>
       <svg ref={d3Ref} height={props.height} width={props.width} /> 
-      <button onClick={() => updateAll()}>Click me!</button>
+      {/* <button onClick={() => createVis()}>Click me!</button> */}
     </div>
   )
 }
