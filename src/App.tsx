@@ -1,9 +1,10 @@
 import { csv } from "d3"; // import the CSV reader from D3 
 import { useEffect, useState } from "react"; // import the useEffect React Lifecycle Hook
 import "./App.css";
-import ScatterPlot from "./Components/ScatterPlot"; //import your custom component
-import OneDData from "./Components/1D-Data";
+// import ScatterPlot from "./Components/ScatterPlot"; //import your custom component
+// import OneDData from "./Components/1D-Data";
 import TwoDData from "./Components/2D-Data";
+import Activity2 from "./Components/Activity2";
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
   //render your custom Component (you could render full pages here that have multiple components)
   return (
       // <ScatterPlot data={data} width={750} height={750} /> 
-      <TwoDData height={750} width={750} />
+      <Activity2 height={100} width={1000} />
   );
 }
 
