@@ -23,8 +23,8 @@ export default function TwoDData(props: DefaultProps) {
       .join("rect");
 
     g.attr("fill", "steelblue")
-      .attr("height", (d: { name: string, population: number }) => d.population / 1_000_000)
-      .attr("width", (d: { name: string, population: number }) => d.population / 1_000_000)
+      .attr("height", (d: typeof data[0]) => d.population / 1_000_000)
+      .attr("width", (d: typeof data[0]) => d.population / 1_000_000)
       .attr("x", (d, i) => i * 50)
       .attr("y", (d, i) => i * 50)
 
